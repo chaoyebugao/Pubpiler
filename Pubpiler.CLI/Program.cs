@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pubpiler.Core;
+using System;
 using System.Diagnostics;
 
 namespace Pubpiler.CLI
@@ -7,26 +8,20 @@ namespace Pubpiler.CLI
     {
         static void Main(string[] args)
         {
-            var exePath = @"C:\Users\Cybg\.nuget\packages\google.protobuf.tools\3.8.0\tools\windows_x64\protoc.exe";
-
             var scriptPath = @"C:\Users\Cybg\Desktop\ProtoScripts";
 
-            var outPutPath = @"C:\Users\Cybg\Desktop\cc";
+            var outputPath = @"C:\Users\Cybg\Desktop\cc";
 
-            var myProcess = new Process();
-            //myProcess.StartInfo.FileName = exePath;
-            myProcess.StartInfo.UseShellExecute = true;
-            var ps = $@"-I={scriptPath} --swift_out={outPutPath} {scriptPath}\Test\SysEnumeration.proto {scriptPath}\Test\ResponseModel.proto";
-            myProcess.StartInfo = new ProcessStartInfo(exePath, ps);
-            myProcess.StartInfo.CreateNoWindow = false;
-            myProcess.OutputDataReceived += (s, e) =>
+            var gen = new Generator();
+            var outputs = new (Langs lang, string outputPath)[]
             {
-                Console.WriteLine($"收到Data:{e.Data}");
+                (Langs.CSharp, outputPath),
+                (Langs.Js, outputPath),
             };
-            myProcess.Start();
+            gen.Compile(scriptPath, outputs, "Test");
 
 
-            Console.WriteLine("执行完毕");
+            Console.WriteLine("Finished.");
             Console.ReadKey();
         }
     }
