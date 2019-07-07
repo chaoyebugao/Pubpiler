@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\Pubpiler.Core\Generator.cs" Link="Core\Generator.cs" />
+    <Compile Include="..\Pubpiler.Core\Langs.cs" Link="Core\Langs.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf.Tools" Version="3.8.0" />
     <PackageReference Include="Grpc.Tools" Version="1.21.0">
       <PrivateAssets>all</PrivateAssets>
@@ -14,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pubpiler.Core\Pubpiler.Core.csproj" />
+    <Folder Include="Core\" />
   </ItemGroup>
 
 </Project>

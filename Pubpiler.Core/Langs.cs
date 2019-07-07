@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Pubpiler.Core
 {
+    /// <summary>
+    /// Languages
+    /// </summary>
     public enum Langs
     {
         /// <summary>

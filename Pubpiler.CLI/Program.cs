@@ -18,7 +18,7 @@ namespace Pubpiler.CLI
                 (Langs.CSharp, outputPath),
                 (Langs.Js, outputPath),
             };
-            gen.Compile(scriptPath, outputs, "Test");
+            gen.Compile(scriptPath, "Test", outputs);
 
 
             Console.WriteLine("Finished.");
