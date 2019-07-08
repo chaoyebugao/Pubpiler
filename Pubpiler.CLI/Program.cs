@@ -8,6 +8,10 @@ namespace Pubpiler.CLI
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("sdfsf55 hahaha");
+
+            return;
+
             var scriptPath = @"C:\Users\Cybg\Desktop\ProtoScripts";
 
             var outputPath = @"C:\Users\Cybg\Desktop\cc";

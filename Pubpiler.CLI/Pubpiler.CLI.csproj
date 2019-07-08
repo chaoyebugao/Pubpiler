@@ -1,8 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>pubpiler</ToolCommandName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.1.2</Version>
+    <Authors>Chaoyebugao</Authors>
+    <Product>pubpiler</Product>
+    <Description>Pubpiler is a tool that can generate proto type messages and gRPC services to different languages, by simple configuration.</Description>
+    <PackageLicenseExpression>AFL-3.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/chaoyebugao/Pubpiler</PackageProjectUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
