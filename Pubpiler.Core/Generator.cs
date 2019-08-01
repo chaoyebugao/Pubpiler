@@ -4,28 +4,38 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace Pubpiler.Core
+namespace Pubpiler
 {
     public class Generator
     {
+        private readonly string procToolPath;
+        private readonly string grpcToolPath;
+
+        public Generator(string procToolPath, string grpcToolPath)
+        {
+            this.procToolPath = procToolPath;
+            this.grpcToolPath = grpcToolPath;
+        }
+
         /// <summary>
         /// Compile
         /// </summary>
         /// <param name="protoRuntimeRootPath">Proto files' root folder path.This path should be root path when write proto files.(When use import clause in proto script inside)</param>
         /// <param name="protoFiles">target proto files's absolute path array in root path</param>
         /// <param name="langOutputs">K-V type array, to indicate different langs with different paths</param>
+        /// <param name="hasGrpc">If has grpc service defined, please specific the output path</param>
         public virtual void Compile(string protoRuntimeRootPath,
-            IEnumerable<string> protoFiles, IEnumerable<(string lang, string outputPath)> langOutputs)
+            IEnumerable<string> protoFiles, IEnumerable<(string lang, string outputPath)> langOutputs, string grpcOutputPath = null)
         {
-            var procPath = @"C:\Users\Cybg\.nuget\packages\google.protobuf.tools\3.8.0\tools\windows_x64\protoc.exe";
-            var grpcPath = @"C:\Users\Cybg\.nuget\packages\grpc.tools\1.21.0\tools\windows_x64\grpc_csharp_plugin.exe";
-
             var proc = new Process();
 
             var langOutPutStr = string.Join(" ", langOutputs.Select(m => $"--{m.lang}_out={m.outputPath}"));
             var protoFilesStr = string.Join(" ", protoFiles);
-            var ps = $@"-I={protoRuntimeRootPath} {langOutPutStr} {protoFilesStr} -I C:\Users\Cybg\Desktop\cc --grpc_out C:\Users\Cybg\Desktop\cc --plugin=protoc-gen-grpc={grpcPath}";
-            proc.StartInfo = new ProcessStartInfo(procPath, ps)
+
+            var grpcCmd = string.IsNullOrEmpty(grpcOutputPath) ? null : $@"-I {grpcOutputPath} --grpc_out {grpcOutputPath} --plugin=protoc-gen-grpc={grpcToolPath}";
+
+            var ps = $@"-I={protoRuntimeRootPath} {langOutPutStr} {protoFilesStr} {grpcCmd}";
+            proc.StartInfo = new ProcessStartInfo(procToolPath, ps)
             {
                 UseShellExecute = false,
                 CreateNoWindow = false
@@ -42,16 +52,17 @@ namespace Pubpiler.Core
         /// </summary>
         /// <param name="protoRuntimeRootPath">Proto files' root folder path.This path should be root path when write proto files.(When use import clause in proto script inside)</param>
         /// <param name="folder">Sub-folder name in root folder</param>
+        /// <param name="grpcOutputPath">If has grpc service defined, please specific the output path</param>
         /// <param name="langOutputs">K-V type array, to indicate different langs with different paths</param>
         public virtual void Compile(string protoRuntimeRootPath,
-            string folder, params (Langs lang, string outputPath)[] langOutputs)
+            string folder, string grpcOutputPath, params (Langs lang, string outputPath)[] langOutputs)
         {
             var langsOutputStr = langOutputs.Select(m => (GetLangOutCmd(m.lang), m.outputPath));
 
             var targetProtoDirectory = Path.Combine(protoRuntimeRootPath, folder);
             var allProtoFiles = Directory.GetFiles(targetProtoDirectory, $"*.proto");
 
-            Compile(protoRuntimeRootPath, allProtoFiles, langsOutputStr);
+            Compile(protoRuntimeRootPath, allProtoFiles, langsOutputStr, grpcOutputPath);
         }
 
         /// <summary>

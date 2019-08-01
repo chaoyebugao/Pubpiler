@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+
+//Test common message
+message AccountMd {
+	uint64 Id = 1;	//Primary id
+	int32 Age = 2;	//Age
+	string Email = 3;	//Email
+	string Name = 4;	//Name
+}

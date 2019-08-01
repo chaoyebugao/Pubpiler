@@ -1,4 +1,4 @@
-﻿using Pubpiler.Core;
+﻿using Pubpiler;
 using System;
 using System.Diagnostics;
 
@@ -8,25 +8,25 @@ namespace Pubpiler.CLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("sdfsf55 hahaha");
+            //Unfinished, please wait...
 
             return;
 
-            var scriptPath = @"C:\Users\Cybg\Desktop\ProtoScripts";
+            //var scriptPath = @"C:\Users\Cybg\Desktop\ProtoScripts";
 
-            var outputPath = @"C:\Users\Cybg\Desktop\cc";
+            //var outputPath = @"C:\Users\Cybg\Desktop\cc";
 
-            var gen = new Generator();
-            var outputs = new (Langs lang, string outputPath)[]
-            {
-                (Langs.CSharp, outputPath),
-                (Langs.Js, outputPath),
-            };
-            gen.Compile(scriptPath, "Test", outputs);
+            //var gen = new Generator();
+            //var outputs = new (Langs lang, string outputPath)[]
+            //{
+            //    (Langs.CSharp, outputPath),
+            //    (Langs.Js, outputPath),
+            //};
+            //gen.Compile(scriptPath, "Test", outputs);
 
 
-            Console.WriteLine("Finished.");
-            Console.ReadKey();
+            //Console.WriteLine("Finished.");
+            //Console.ReadKey();
         }
     }
 }

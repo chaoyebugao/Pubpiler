@@ -32,4 +32,8 @@
     <Folder Include="Core\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pubpiler\Pubpiler.csproj" />
+  </ItemGroup>
+
 </Project>
