@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>Chaoyebugao</Authors>
+    <Description>Pubpiler is a tool that can generate proto type messages and gRPC services to different languages, by simple configuration/class.</Description>
+    <PackageProjectUrl>https://github.com/chaoyebugao/Pubpiler</PackageProjectUrl>
+    <PackageLicenseExpression>AFL-3.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
