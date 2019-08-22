@@ -15,7 +15,7 @@ namespace Pubpiler
         private const string procToolVersion = "3.8.0";
         private const string procToolExeName = "protoc.exe";
 
-        private const string grpcToolName = "google.protobuf.tools";
+        private const string grpcToolName = "grpc.tools";
         private const string grpcToolVersion = "1.22.0";
         private const string grpcToolExeName = "grpc_csharp_plugin.exe";
 
